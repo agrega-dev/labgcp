@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Domain status{% endblock %}
+
+{% block content %}
+
+
+    <h3>cambio del dia</h3>
+    
+    
+        {% for key, value in change.items() %}
+        {{ key }} : {{ value }}
+        {% endfor %}
+      
+{% endblock %}
