@@ -8,7 +8,7 @@ sudo useradd -m -d /home/pythonapp pythonapp
 
 #  Clonar aplicación desde GITHUB en servidor
 export HOME=/root
-sudo git clone https://github.com/agrega-dev/labgcp.git /opt/app
+sudo git clone https://github.com/agrega-dev/labgcp.git /opt/app/labgcp
 
 # Preparar ambiente de python
 sudo virtualenv -p python3 /opt/app/labgcp/env
