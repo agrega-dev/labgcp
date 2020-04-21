@@ -1,7 +1,8 @@
 # Instalar python, pip y virtualenv
 sudo apt-get update
-sudo apt-get install -yq git supervisor python python-pip
-sudo pip install --upgrade pip virtualenv
+apt-get update
+apt remove python
+apt-get install -yq git python3 python3-pip python3-setuptools build-essential
 
 # crear usuario para la aplicación
 sudo useradd -m -d /home/pythonapp pythonapp
@@ -11,16 +12,11 @@ export HOME=/root
 sudo git clone https://github.com/agrega-dev/labgcp.git /opt/app/labgcp
 
 # Preparar ambiente de python
-sudo virtualenv -p python3 /opt/app/labgcp/env
-source /opt/app/labgcp/env/bin/activate
-sudo /opt/app/labgcp/env/bin/pip install -r /opt/app/labgcp/gce/requirements.txt
+pip3 install -r /opt/app/requirements.txt
 
 # Otorgar privilegios al usuario sobre el directorio donde se encuentra la aplicación
 sudo chown -R pythonapp:pythonapp /opt/app
+cd /opt/app
 
-# Colocar el archivo de configuración de supervisor en el lugar correcto 
-sudo cp /opt/app/labgcp/python-app.conf /etc/supervisor/conf.d/python-app.conf
-
-# iniciar servicios de supervisor
-sudo supervisorctl reread
-sudo supervisorctl update
+# Levantar aplicación 
+gunicorn -w 15 -b 0.0.0.0:3000 main:app -D
