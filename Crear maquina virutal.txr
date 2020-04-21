@@ -1,0 +1,20 @@
+
+# Crear maquina virtual
+MY_INSTANCE_NAME="mi-lab"
+ZONE=us-central1-a
+
+gcloud compute instances create $MY_INSTANCE_NAME \
+    --image-family=debian-9 \
+    --image-project=debian-cloud \
+    --machine-type=g1-small \
+    --scopes userinfo-email,cloud-platform \
+    --metadata-from-file startup-script=startup-script.sh \
+    --zone $ZONE \
+    --tags http-server
+
+# Crear regla en firewall que permita el trafico al puerto de la aplicación
+gcloud compute firewall-rules create default-allow-http-80 \
+    --allow tcp:80 \
+    --source-ranges 0.0.0.0/0 \
+    --target-tags http-server \
+    --description "Allow port 80 access to http-server"
