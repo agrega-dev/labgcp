@@ -26,7 +26,7 @@ def data():
     t1_stop = process_time()
     return datos_list
 
-@app.route("/cambio")
+@app.route("/")
 def muestracambio():
 
     return render_template(
