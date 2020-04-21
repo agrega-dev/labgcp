@@ -7,3 +7,4 @@ Este laboratorio contiene los pasos para despliegue de aplicacion python/flask a
 
 Introducción a este lab puede encontrarla en https://youtu.be/oRQrGtsPnF8
 
+
