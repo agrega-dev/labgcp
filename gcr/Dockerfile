@@ -1,6 +1,6 @@
 FROM python:3.7-slim
 
-
+# Instalar todas las dependencias de nuestro codigo
 RUN pip install Flask gunicorn Jinja2 requests Werkzeug lxml httplib2
 
 
