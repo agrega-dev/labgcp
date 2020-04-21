@@ -12,7 +12,7 @@ sudo git clone https://github.com/agrega-dev/labgcp.git /opt/app/labgcp
 
 # Preparar ambiente de python
 sudo virtualenv -p python3 /opt/app/labgcp/env
-sudo source /opt/app/labgcp/env/bin/activate
+source /opt/app/labgcp/env/bin/activate
 sudo /opt/app/labgcp/bin/pip install -r /opt/app/labgcp/gce/requirements.txt
 
 # Otorgar privilegios al usuario sobre el directorio donde se encuentra la aplicación
