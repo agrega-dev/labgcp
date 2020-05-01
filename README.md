@@ -12,8 +12,11 @@ Realiza un srcraping de extrae datos y muestra en interface
 
 # Folders
 /GCE    Gogle Commpute Engine
+
 /GCR    Google Cloud Run
+
 /nginx  Configuracion webserver
+
 /       Aplicacion, Yaml, requirements
 
 
