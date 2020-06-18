@@ -4,26 +4,32 @@ import requests
 from lxml import html
 from httplib2 import Http
 from json import dumps
-from time import process_time 
-
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 #data definition
 def data():
-    datos_dic={}
     source = 'https://www.bancodeoccidente.hn/banca-personas/internacional/divisas-personas'
-    data = requests.get(source, verify=False)
-    tree = html.fromstring(data.content)
-    #data extraction
-    responsecambiocompra = tree.xpath('//span[@id="usd-compra"]/text()')
-    responsecambioventa = tree.xpath('//span[@id="usd-venta"]/text()')
-    #list2string
-    cambiocompra = ''.join(responsecambiocompra)
-    cambioventa = ''.join(responsecambioventa)
+    page = requests.get(source)
+    #parsea pagina y extrae bloque de cambio de dolar
+    soup = BeautifulSoup(page.text, 'html.parser')
+    data = soup.find("div", {"id":"dollar-panel-1"})
+
+    #soup = BeautifulSoup(data, "html.parser")
+    a = []
+    for span in data.select("span"):
+        a.append(span.get_text())
+    #Recorre lista de y extrae datos.
+    for i, val in enumerate(a): 
+    #print (i, ",",val)
+        if (val == "Venta"):
+            cambioventa = a[i+1]
+        if (val == "Compra"):
+            cambiocompra = a[i+1]
+
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     datos_list = {"Compra": cambiocompra, "Venta":cambioventa,"Fecha":dt_string}
-    t1_stop = process_time()
     return datos_list
 
 @app.route("/")
