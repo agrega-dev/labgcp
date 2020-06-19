@@ -17,5 +17,6 @@ gcloud builds submit --tag $DOCKER_IMG
 
 #docker pull $DOCKER_IMG
 
-#Despliegue
+Despliegue de container a Cloud run
+
 gcloud run deploy labgcp --image $DOCKER_IMG  --platform managed --allow-unauthenticated
