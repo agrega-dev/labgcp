@@ -3,6 +3,6 @@ honcho==1.0.1
 gunicorn==19.9.0
 Jinja2==2.10.1
 requests==2.20.0
-Werkzeug==0.15.3
+Werkzeug==0.15.5
 lxml==4.5.0
 httplib2==0.17.2
